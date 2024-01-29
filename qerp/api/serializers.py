@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employee, Inventory, Project, Customer
+from .models import Employee, Inventory, Projects, Customer, Category, Quotations, QuotationItems, Invoices, InvoiceItems, TimeSheet
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,10 +13,40 @@ class InventorySerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Project
+        model = Projects
         fields = ('__all__')
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
+        fields = ('__all__')
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('__all__')
+
+class QuotationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quotations
+        fields = ('__all__')
+
+class QuotationItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuotationItems
+        fields = ('__all__')
+
+class InvoicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invoices
+        fields = ('__all__')
+
+class InvoiceItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InvoiceItems
+        fields = ('__all__')
+
+class TimeSheetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TimeSheet
         fields = ('__all__')
