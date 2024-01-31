@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from .models import Employee, Inventory, Projects, Customer, Category, Quotations, QuotationItems, Invoices, InvoiceItems, TimeSheet
-from .serializers import EmployeeSerializer, InventorySerializer, ProjectSerializer, CustomerSerializer, CategorySerializer, QuotationsSerializer, QuotationItemsSerializer, InvoicesSerializer, InvoiceItemsSerializer, TimeSheetSerializer
+from .models import SystemSettings, Employee, Inventory, Projects, Customer, Category, Quotations, QuotationItems, Invoices, InvoiceItems, TimeSheet
+from .serializers import SystemSettingsSerializer, EmployeeSerializer, InventorySerializer, ProjectSerializer, CustomerSerializer, CategorySerializer, QuotationsSerializer, QuotationItemsSerializer, InvoicesSerializer, InvoiceItemsSerializer, TimeSheetSerializer
 
 
 # Create your views here.
+
+class SystemSettingsList(generics.ListAPIView):
+    serializer_class = SystemSettingsSerializer
+
+    def get_queryset(self):
+        queryset = SystemSettings.objects.all()        
+
+        return queryset
 
 class EmployeeList(generics.ListCreateAPIView):
     serializer_class = EmployeeSerializer

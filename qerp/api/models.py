@@ -2,6 +2,17 @@ from django.db import models
 
 # Create your models here.
 
+class SystemSettings(models.Model):
+    name = models.CharField(max_length=100)
+    contact = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254, unique=True)
+    website = models.URLField()
+    logo = models.ImageField()
+    status = models.CharField()
+
+    def __str__(self):
+        return self.name
+
 class Employee(models.Model):
     employee_name = models.CharField(max_length=100)
     office_contact = models.CharField(max_length=10)

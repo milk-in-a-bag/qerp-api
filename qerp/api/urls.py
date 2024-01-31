@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import EmployeeList, EmployeeDetail, InventoryList, InventoryDetail, ProjectList, ProjectDetail, CustomerList, CustomerDetail, CategoryList, CategoryDetail, QuotationsList, QuotationsDetail, QuotationItemsList, QuotationItemsDetail, InvoicesList, InvoicesDetail, InvoiceItemsList, InvoiceItemsDetail, TimeSheetList, TimeSheetDetail
+from .views import SystemSettingsList, EmployeeList, EmployeeDetail, InventoryList, InventoryDetail, ProjectList, ProjectDetail, CustomerList, CustomerDetail, CategoryList, CategoryDetail, QuotationsList, QuotationsDetail, QuotationItemsList, QuotationItemsDetail, InvoicesList, InvoicesDetail, InvoiceItemsList, InvoiceItemsDetail, TimeSheetList, TimeSheetDetail
 
 urlpatterns = [
+    path('systemsettings/', SystemSettingsList.as_view()),
     path('employee/', EmployeeList.as_view()),
     path('employee/<int:pk>/', EmployeeDetail.as_view()),
     path('inventory/', InventoryList.as_view()),

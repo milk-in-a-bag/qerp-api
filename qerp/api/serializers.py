@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Employee, Inventory, Projects, Customer, Category, Quotations, QuotationItems, Invoices, InvoiceItems, TimeSheet
+from .models import SystemSettings, Employee, Inventory, Projects, Customer, Category, Quotations, QuotationItems, Invoices, InvoiceItems, TimeSheet
+
+class SystemSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SystemSettings
+        fields = ('__all__')
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
