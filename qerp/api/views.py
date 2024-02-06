@@ -14,6 +14,10 @@ class SystemSettingsList(generics.ListAPIView):
         queryset = SystemSettings.objects.all()        
 
         return queryset
+    
+class SystemSettingsDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SystemSettingsSerializer
+    queryset = SystemSettings.objects.all()        
 
 class EmployeeList(generics.ListCreateAPIView):
     serializer_class = EmployeeSerializer

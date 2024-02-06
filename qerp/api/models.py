@@ -3,12 +3,21 @@ from django.db import models
 # Create your models here.
 
 class SystemSettings(models.Model):
+
+    status_choices = [
+        ("In stock", "In stock"),
+        ("On backorder", "On backorder"),
+        ("In transit", "In transit"),
+        ("Allocated", "Allocated"),
+        ("Shipped", "Shipped"),
+    ]
+
     name = models.CharField(max_length=100)
     contact = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     website = models.URLField()
     logo = models.ImageField()
-    status = models.CharField()
+    status = models.CharField(choices=status_choices)
 
     def __str__(self):
         return self.name
@@ -21,7 +30,32 @@ class Employee(models.Model):
     def __str__(self):
         return self.employee_name
 
+class Category(models.Model):
+
+    status_choices = [
+        ("In stock", "In stock"),
+        ("On backorder", "On backorder"),
+        ("In transit", "In transit"),
+        ("Allocated", "Allocated"),
+        ("Shipped", "Shipped"),
+    ]
+
+    name = models.CharField(max_length=100)
+    status = models.CharField(choices=status_choices)
+
+    def __str__(self):
+        return self.name
+
 class Inventory(models.Model):
+
+    status_choices = [
+        ("In stock", "In stock"),
+        ("On backorder", "On backorder"),
+        ("In transit", "In transit"),
+        ("Allocated", "Allocated"),
+        ("Shipped", "Shipped"),
+    ]
+
     item_name = models.CharField(max_length=100)
     manufacturer = models.CharField(max_length = 100)
     description = models.TextField()
@@ -29,21 +63,14 @@ class Inventory(models.Model):
     warrant = models.IntegerField()
     warrant_expiry = models.DateField()
     serial = models.CharField()
-    status = models.TextField()
-    category = models.CharField()
+    status = models.TextField(choices=status_choices)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='inventory')
     landing_price = models.IntegerField()
     selling_price = models.IntegerField()
     discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.product_name
-    
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    status = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
 class Projects(models.Model):
     project_name = models.CharField(max_length=100)
